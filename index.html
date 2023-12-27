@@ -30,7 +30,7 @@
             <input
               type="text"
               placeholder="Search Movies"
-              oninput="searchTerm(event)"
+              onchange="searchTerm(event)"
             />
             <i class="fa-solid fa-magnifying-glass"></i>
           </div>
@@ -41,9 +41,8 @@
       <div class="header__container">
         <div class="row">
           <div class="results__bar">
-            <h2>Search results for <span class="purple">"Movie"</span></h2>
+            <h2>Search results for: <span class="purple search__value" onchange="searchTerm(event)"></span></h2>
             <div class="double__range--slider-box">
-            <!-- <h3>Year range: <span class="purple">0 to 2023</span></h3> -->
 
               <div class="double__range--slider">
                 <span class="range__track" id="range__track"></span>
