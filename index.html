@@ -43,29 +43,37 @@
           <div class="results__bar">
             <h2>Search results for: <span class="purple search__value" onchange="searchTerm(event)"></span></h2>
             <div class="double__range--slider-box">
-
-              <div class="double__range--slider">
-                <span class="range__track" id="range__track"></span>
+                <div class="values">
+                  <span id="range1">
+                    0
+                  </span>
+                  <span> - </span>
+                  <span id="range2">
+                    2023
+                  </span>
+                </div>
+                <div class="slider__container">
+                <span class="slider__track"></span>
                 <input
                   type="range"
-                  min="0"
+                  min="1900"
                   max="2023"
                   value="0"
-                  class="min input"
-                  step="0"
+                  class="slider__value"
+                  id="slider__1"
+                  oninput="slideOne(event)"
+                  onchange="filterYear(event)"
                 />
                 <input
                   type="range"
-                  min="0"
+                  min="1900"
                   max="2023"
                   value="2023"
-                  class="max input"
-                  step="20"
+                  class="slider__value"
+                  id="slider__2"
+                  oninput="slideTwo(event)"
+                  onchange="filterYear(event)"
                 />
-
-                <div class="min__value"></div>
-                <div class="max__value"></div>
-              </div>
             </div>
           </div>
           <div class="movie__list">
@@ -81,92 +89,10 @@
                 <p class="movie__description movie__year">
                   <span class="movie__description--heading">Year:</span> 2017
                 </p>
-                <p class="movie__description movie__rated">
-                  <span class="movie__description--heading">Rating:</span> PG-13
-                </p>
-                <p class="movie__description movie__runtime">
-                  <span class="movie__description--heading">Runtime:</span> 136
-                  min
-                </p>
-                <p class="movie__description movie__genre">
-                  <span class="movie__description--heading">Genre:</span>
-                  Action, Adventure, Comedy
-                </p>
-                <p class="movie__description movie__director">
-                  <span class="movie__description--heading">Director:</span>
-                  James Gunn
-                </p>
-                <p class="movie__description movie__actors">
-                  <span class="movie__description--heading">Actors:</span> Chris
-                  Pratt, Zoe Saldana, Dave Bautista
-                </p>
-                <p class="movie__description movie__plot">
-                  <span class="movie__description--heading">Plot:</span> Movie
-                  Plot Here
-                </p>
-                <div class="movie__ratings">
-                  <div class="movie__rating movie__rating__0">
-                    <h3 class="purple movie__rating--title">
-                      Source: Internet Movie Database
-                    </h3>
-                    <p class="movie__rating--para">7.6/10</p>
-                  </div>
-                  <div class="movie__rating movie__rating__1">
-                    <h3 class="purple movie__rating--title">
-                      Source: Rotten Tomatoes
-                    </h3>
-                    <p class="movie__rating--para">85%</p>
-                  </div>
-                  <div class="movie__rating movie__rating__2">
-                    <h3 class="purple movie__rating--title">
-                      Source: Metacritic
-                    </h3>
-                    <p class="movie__rating--para">67/100</p>
-                  </div>
                 </div>
               </div>
             </div>
 
-            <div class="movie">
-              <figure>
-                <img src="" alt="" class="movie__img" />
-              </figure>
-              <div class="movie__description--list">
-                <p class="movie__description movie__title">
-                  <span class="movie__description--heading">Title:</span>
-                </p>
-                <h3 class="purple">Guardians Of The Galaxy</h3>
-                <p class="movie__description movie__type">
-                  <span class="movie__description--heading">Type:</span> 2017
-                </p>
-                <p class="movie__description movie__year">
-                  <span class="movie__description--heading">Year:</span> 2017
-                </p>
-                <p class="movie__description movie__imdb-id">
-                  <span class="movie__description--heading">IMDB ID:</span> 2017
-                </p>
-                <div class="movie__ratings">
-                  <div class="movie__rating movie__rating__0">
-                    <h3 class="purple movie__rating--title">
-                      Source: Internet Movie Database
-                    </h3>
-                    <p class="movie__rating--para">7.6/10</p>
-                  </div>
-                  <div class="movie__rating movie__rating__1">
-                    <h3 class="purple movie__rating--title">
-                      Source: Rotten Tomatoes
-                    </h3>
-                    <p class="movie__rating--para">85%</p>
-                  </div>
-                  <div class="movie__rating movie__rating__2">
-                    <h3 class="purple movie__rating--title">
-                      Source: Metacritic
-                    </h3>
-                    <p class="movie__rating--para">67/100</p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

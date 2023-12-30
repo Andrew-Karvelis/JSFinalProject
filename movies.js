@@ -1,10 +1,21 @@
-const movieListElem = document.querySelector(".movie__list");
-const id = localStorage.getItem("id");
-
-let searchValue = document.querySelector(".search__value");
-
 //950c424d API KEY
 
+const movieListElem = document.querySelector(".movie__list");
+const id = localStorage.getItem("id");
+const searchValue = document.querySelector(".search__value");
+const n = 6
+
+//DBL RANGE SLIDER SEARCH
+
+function filterYear(event) {
+    const movieId = event.target.value
+    getMovies(movieId)
+    movieData.filter((movie) => 
+    sliderOne.value >= movie.Year && sliderTwo.value <= movie.Year)
+}
+
+
+//SEARCH BAR
 async function searchTerm(event)  {
     const movieId = event.target.value;
     getMovies(movieId);
@@ -16,12 +27,14 @@ function searchResult(searchValue) {
                 <h2>Search results for: <span class="purple search__value" onchange="searchTerm(event)">${searchValue}</span></h2>`;
 }
 
+//FETCHING MOVIES FROM BACKEND
 async function getMovies(movieId) {
     const movies = await fetch(`https://www.omdbapi.com/?apikey=950c424d&s=${movieId}`);
     const movieData = await movies.json();
-    movieListElem.innerHTML = movieData.Search.map((movie) => getMovieDescription(movie)).join("");
+    movieListElem.innerHTML = movieData.Search.map((movie) => getMovieDescription(movie)).slice(0, n);
 }
 
+//AMENDING HTML DYNAMICALLY
 function getMovieDescription(movie) {
    return `<div class="movie">
         <figure>
@@ -40,3 +53,34 @@ function getMovieDescription(movie) {
     </div>`;
 }
 getMovies();
+
+
+// DOUBLE RANGE SLIDER //
+window.onload = function(){
+    slideOne();
+    slideTwo();
+}
+
+
+
+let sliderOne = document.getElementById("slider__1");
+let sliderTwo = document.getElementById("slider__2");
+let displayValOne = document.getElementById("range1");
+let displayValTwo = document.getElementById("range2");
+let minGap = 0;
+
+function slideOne(){
+    if(parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap){
+        sliderOne.value = parseInt(sliderTwo.value) - minGap;
+    }
+    displayValOne.textContent = sliderOne.value;
+
+}
+
+function slideTwo(){
+    if(parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap){
+        sliderTwo.value = parseInt(sliderOne.value) + minGap;
+    }
+    displayValTwo.textContent = sliderTwo.value;
+
+}
