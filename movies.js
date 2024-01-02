@@ -1,23 +1,8 @@
 //950c424d API KEY
-
 const movieListElem = document.querySelector(".movie__list");
-const id = localStorage.getItem("id");
 const searchValue = document.querySelector(".search__value");
 const n = 6;
-let movieData = "";
-
-//DBL RANGE SLIDER SEARCH
-function filterYear() {
-  const filteredMovies = movieData.Search.filter(
-    (movie) =>
-    parseInt(sliderOne.value) <= parseInt(movie.Year) &&
-    parseInt(sliderTwo.value) >= parseInt(movie.Year)
-  );
-
-  movieData.Search = filteredMovies;
-
-  renderMovies();
-}
+let movieData = {};
 
 //SEARCH BAR
 async function searchTerm(event) {
@@ -26,11 +11,22 @@ async function searchTerm(event) {
   searchValue.innerHTML = movieId;
 }
 
-async function renderMovies() {
+function renderMovies() {
+
   if (movieData.Search) {
     movieListElem.innerHTML = movieData.Search.map((movie) =>
       getMovieDescription(movie)
-    ).join("");
+    )
+      .slice(0, n)
+      .join("");
+
+      document.querySelector('.no__movies--container').style.display = 'none';
+      movieListElem.style.display = 'block';
+  } else {
+    console.log("movie not found");
+
+    document.querySelector('.no__movies--container').style.display = 'block';
+    movieListElem.style.display = 'none';
   }
 }
 
@@ -44,14 +40,10 @@ async function getMovies(movieId) {
   const movies = await fetch(
     `https://www.omdbapi.com/?apikey=950c424d&s=${movieId}`
   );
-  const movieData = await movies.json();
+  movieData = await movies.json();
   setTimeout(() => {
-
-  movieListElem.innerHTML = movieData.Search.map((movie) =>
-    getMovieDescription(movie)
-  ).slice(0, n)
-    .join("");
-}, 1000)
+    renderMovies();
+  }, 1000);
 }
 
 //AMENDING HTML DYNAMICALLY
@@ -73,7 +65,6 @@ function getMovieDescription(movie) {
         </div>
     </div>`;
 }
-getMovies();
 
 // DOUBLE RANGE SLIDER //
 window.onload = function () {
@@ -99,4 +90,27 @@ function slideTwo() {
     sliderTwo.value = parseInt(sliderOne.value) + minGap;
   }
   displayValTwo.textContent = sliderTwo.value;
+}
+
+//DBL RANGE SLIDER SEARCH
+function filterYear() {
+  if (movieData && movieData.Search) {
+    const filteredMovies = movieData.Search.filter(
+      (movie) =>
+        parseInt(sliderOne.value) <= parseInt(movie.Year) &&
+        parseInt(sliderTwo.value) >= parseInt(movie.Year)
+    );
+
+  // movieData.Search = filteredMovies;
+
+  renderFilteredMovies(filteredMovies);
+    } else {
+      console.log('Movie data or search results not available.');
+    }
+}
+function renderFilteredMovies(filteredMovies) {
+  movieListElem.innerHTML = filteredMovies
+    .slice(0, n)
+    .map((movie) => getMovieDescription(movie))
+    .join("");
 }

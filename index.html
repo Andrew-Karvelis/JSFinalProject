@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
 
-    <script src="https://kit.fontawesome.com/4089275dac.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/4089275dac.js"
+      crossorigin="anonymous"
+    ></script>
     <title>JavaScript Final Project</title>
   </head>
   <body>
@@ -39,18 +42,20 @@
       <div class="header__container">
         <div class="row">
           <div class="results__bar">
-            <h2>Search results for: <span class="purple search__value" onchange="searchTerm(event)"></span></h2>
+            <h2>
+              Search results for:
+              <span
+                class="purple search__value"
+                onchange="searchTerm(event)"
+              ></span>
+            </h2>
             <div class="double__range--slider-box">
-                <div class="values">
-                  <span id="range1">
-                    0
-                  </span>
-                  <span> - </span>
-                  <span id="range2">
-                    2023
-                  </span>
-                </div>
-                <div class="slider__container">
+              <div class="values">
+                <span id="range1"> 0 </span>
+                <span> - </span>
+                <span id="range2"> 2023 </span>
+              </div>
+              <div class="slider__container">
                 <span class="slider__track"></span>
                 <input
                   type="range"
@@ -60,7 +65,8 @@
                   class="slider__value"
                   id="slider__1"
                   oninput="slideOne(event)"
-                  onchange="filterYear(event)"/>
+                  onchange="filterYear()"
+                />
                 <input
                   type="range"
                   min="1900"
@@ -69,16 +75,25 @@
                   class="slider__value"
                   id="slider__2"
                   oninput="slideTwo(event)"
-                  onchange="filterYear()"/>
+                  onchange="filterYear()"
+                />
+              </div>
+            </div>
+
+            <div class="movie__list">
+              <div class="no__movies--container">
+                <h1>Please search for a movie</h1>
+                <img
+                  src="./assets/undraw_blank.svg"
+                  alt="Placeholder Image"
+                  class="no__movies"
+                />
+              </div>
             </div>
           </div>
-          <div class="movie__list">
-            <i class="fas fa-spinner movie__loading-spinner"></i>
-
-          </div>
         </div>
+        <script src="movies.js"></script>
       </div>
     </header>
   </body>
 </html>
-<script src="movies.js"></script>
